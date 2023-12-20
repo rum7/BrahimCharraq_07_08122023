@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/svg+xml" href="./src/img/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style/app.css">
+
+    <script defer type="module" src="./src/main.js"></script>
+    <title>Les petits plats</title>
+  </head>
+  <body>
+    <div id="app" class="max-w-[1440px] w-full min-h-screen mx-auto bg-lpp-bg-body">
+      <header class="flex flex-col justify-end items-center lg:flex-row lg:justify-center lg:items-center relative h-[667px] bg-[url('../img/banner.png')]">
+        <img src="./src/img/logo.svg" alt="logo" class="lg:absolute lg:top-[51px] lg:left-[69px]">
+        <div class="relative max-w-[954px] w-full p-8 lg:p-0">
+          <h1 class="max-w-[679px] mx-auto text-center font-Anton uppercase text-[2.75rem] text-lpp-yellow">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
+
+          <div class="relative group mt-7">
+            <input 
+              type="text" 
+              id="search-recipe" 
+              name="search-recipe"
+              placeholder="Rechercher une recette, un ingrédient..." 
+              class="search-recipe placeholder:text-ellipsis w-full h-[72px] pl-9 pr-20 py-6 font-Manrope text-[1rem] text-lpp-grey rounded-xl outline-none outline-offset-0 focus:outline-[2px] focus:outline-blue-500 transition duration-200 ease-out"
+            >
+            <button id="reset-search" class="reset-search absolute top-[27px] right-[85px] hidden">
+              <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+                <path d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15" stroke="#7A7A7A" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>                
+            </button>
+            <span for="search-recipe" class="absolute top-3 right-[10px] flex items-center justify-center w-12 h-12 rounded-xl bg-lpp-black group-focus-within:bg-lpp-yellow">
+              <svg viewBox="0 0 28 28" fill="none" class="w-7 h-7 stroke-white group-focus-within:stroke-black">
+                <circle cx="10" cy="10" r="9.5"/>
+                <line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </header>
+
+      <main class="py-8 px-8 lg:px-[102px]">
+        <section class="search flex justify-between flex-wrap gap-x-16 gap-y-5">
+          <div class="filters order-2 lg:order-1 flex flex-wrap gap-x-16 gap-y-5">
+            <div class="relative block text-left w-52 shadow-sm transition-all ease-in-out duration-200">
+              <button 
+                id="ingredients-list" 
+                type="button" 
+                class="tagname-list relative inline-flex justify-between items-center rounded-xl w-full h-14 p-4 bg-white hover:bg-lpp-yellow transition-all ease-in-out duration-200"
+                aria-expanded="true" 
+                aria-haspopup="true"
+              >
+                <span class="font-Manrope font-medium text-[1rem] text-lpp-black">Ingrédients</span>
+                <span class="arrow arrow-before arrow-after"></span>
+              </button>
+
+              <div class="absolute rounded-b-xl overflow-clip bg-white w-full focus:outline-none hidden opacity-0 -translate-y-4 origin-top transition-[opacity, transform] ease-in-out duration-200" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                <div class="relative h-[200px] overflow-y-auto font-Manrope font-normal text-sm text-lpp-black" role="none">
+                  <input type="text" class="search-recipe w-[calc(100%-2rem)] my-3 mx-auto block p-2 ring-1 ring-lpp-lightgrey rounded-sm text-lpp-grey">
+                  <button class="reset-search absolute top-[26px] right-[52px] hidden">
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                      <path d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7" stroke="#7A7A7A" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>             
+                  </button>
+                  <span class="absolute top-6 right-6">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="0.5"/>
+                      <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="0.5"/>
+                      </svg>
+                  </span>
+
+                  <ul id="tags-ingredients-list"></ul>
+                </div>
+              </div>
+
+              
+            </div>
+
+            <div class="relative block text-left w-52 shadow-sm transition-all ease-in-out duration-200">
+              <button 
+                id="ingredients-list" 
+                type="button" 
+                class="tagname-list relative inline-flex justify-between items-center rounded-xl w-full h-14 p-4 bg-white hover:bg-lpp-yellow transition-all ease-in-out duration-200"
+                aria-expanded="true" 
+                aria-haspopup="true"
+              >
+                <span class="font-Manrope font-medium text-[1rem] text-lpp-black">Appareils</span>
+                <span class="arrow arrow-before arrow-after"></span>
+              </button>
+
+              <div class="absolute rounded-b-xl overflow-clip bg-white w-full focus:outline-none hidden opacity-0 -translate-y-4 origin-top transition-[opacity, transform] ease-in-out duration-200" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                <div class="relative h-[200px] overflow-y-auto font-Manrope font-normal text-sm text-lpp-black" role="none">
+                  <input type="text" class="search-recipe w-[calc(100%-2rem)] my-3 mx-auto block p-2 ring-1 ring-lpp-lightgrey rounded-sm text-lpp-grey">
+                  <button class="reset-search absolute top-[26px] right-[52px] hidden">
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                      <path d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7" stroke="#7A7A7A" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>             
+                  </button>
+                  <span class="absolute top-6 right-6">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="0.5"/>
+                      <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="0.5"/>
+                      </svg>
+                  </span>
+
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Jus de citron</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Glaçons</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Tomate</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Poulet</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Poivron rouge</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Thon en miettes</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Vinaigrette</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Saucisse bretonne ou de Toulouse</button>
+                </div>
+              </div>
+
+              
+            </div>
+
+            <div class="relative block text-left w-52 shadow-sm transition-all ease-in-out duration-200">
+              <button 
+                id="ingredients-list" 
+                type="button" 
+                class="tagname-list relative inline-flex justify-between items-center rounded-xl w-full h-14 p-4 bg-white hover:bg-lpp-yellow transition-all ease-in-out duration-200"
+                aria-expanded="true" 
+                aria-haspopup="true"
+              >
+                <span class="font-Manrope font-medium text-[1rem] text-lpp-black">Ustensiles</span>
+                <span class="arrow arrow-before arrow-after"></span>
+              </button>
+
+              <div class="absolute rounded-b-xl overflow-clip bg-white w-full focus:outline-none hidden opacity-0 -translate-y-4 origin-top transition-[opacity, transform] ease-in-out duration-200" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                <div class="relative h-[200px] overflow-y-auto font-Manrope font-normal text-sm text-lpp-black" role="none">
+                  <input type="text" class="search-recipe w-[calc(100%-2rem)] my-3 mx-auto block p-2 ring-1 ring-lpp-lightgrey rounded-sm text-lpp-grey">
+                  <button class="reset-search absolute top-[26px] right-[52px] hidden">
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                      <path d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7" stroke="#7A7A7A" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>             
+                  </button>
+                  <span class="absolute top-6 right-6">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <circle cx="5" cy="5" r="4.75" stroke="#7A7A7A" stroke-width="0.5"/>
+                      <line x1="9.17678" y1="9.32322" x2="13.6768" y2="13.8232" stroke="#7A7A7A" stroke-width="0.5"/>
+                      </svg>
+                  </span>
+
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Jus de citron</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Glaçons</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Tomate</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Poulet</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Poivron rouge</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Thon en miettes</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Vinaigrette</button>
+                  <button class="tagname-filter w-full text-left px-4 py-2 text-ellipsis whitespace-nowrap overflow-hidden hover:bg-lpp-yellow [&.selected]:font-bold [&.selected]:bg-[url('../img/btn-delete-tag-1.svg')] [&.selected]:bg-no-repeat [&.selected]:bg-right-15-center [&.selected]:bg-lpp-yellow">Saucisse bretonne ou de Toulouse</button>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+
+          <div class="order-1 lg:order-2 recipes-counter h-14 flex items-center font-Anton text-xl text-lpp-black">03 recettes</div>
+
+          <div class="tags order-3 lg:order-3 flex basis-full">
+            <button class="tags__reset" hidden>reset</button>
+            <ul class="tags__list flex flex-wrap gap-5">
+              <li class="tags__item"><button class="inline-flex justify-between items-center rounded-xl p-4 pr-[90px] bg-lpp-yellow bg-[url('../img/btn-delete-tag-2.svg')] bg-right-20-center bg-no-repeat shadow-sm hover:bg-white transition ease-in-out duration-200">Poulet</button></li>
+              <li class="tags__item"><button class="inline-flex justify-between items-center rounded-xl p-4 pr-[90px] bg-lpp-yellow bg-[url('../img/btn-delete-tag-2.svg')] bg-right-20-center bg-no-repeat shadow-sm hover:bg-white transition ease-in-out duration-200">Tomate</button></li>
+              <li class="tags__item"><button class="inline-flex justify-between items-center rounded-xl p-4 pr-[90px] bg-lpp-yellow bg-[url('../img/btn-delete-tag-2.svg')] bg-right-20-center bg-no-repeat shadow-sm hover:bg-white transition ease-in-out duration-200">Poivron rouge</button></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="recipes mt-10 grid gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="recipe-card relative rounded-2xl bg-white overflow-clip shadow-2xl">
+            <img class="recipe-card__thumbnail w-full h-64 object-cover" src="./src/img/recette01.png" alt="Limonade de Coco">
+            <div class="recipe-card__content px-6 py-8 flex flex-col gap-y-8">
+              <h2 class="recipe-card__name font-Anton text-lg text-lpp-black leading-[1]">Limonade de Coco</h2>
+              
+              <div class="flex flex-col gap-y-3.5">
+                <h3 class="recipe-card__category font-Manrope font-bold text-[.75rem] uppercase text-lpp-grey tracking-wider leading-[1]">Recette</h3>
+                <p class="recipe-card__desc font-Manrope text-sm text-lpp-black">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+              </div>
+
+              <div class="flex flex-col gap-y-3.5">
+                <h3 class="recipe-card__category font-Manrope font-bold text-[.75rem] uppercase text-lpp-grey tracking-wider leading-[1]">Ingrédients</h3>
+                <ul class="recipe-card__ingredients grid grid-cols-2 gap-x-1.5 gap-y-5">
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Lait de coco</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">400ml</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Jus de citron</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">2</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Crème de coco</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">4 cuillères</p>
+                  </li>
+                
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Sucre</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">20g</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Glaçon</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">2</p>
+                  </li>
+                </ul>
+              </div>
+
+              <span class="recipe-card__time absolute top-5 right-5 px-4 py-1.5 bg-lpp-yellow rounded-2xl font-Manrope text-[.75rem]">10min</span>
+            </div>
+          </div>
+
+          <div class="recipe-card relative rounded-2xl bg-white overflow-clip shadow-2xl">
+            <img class="recipe-card__thumbnail w-full h-64 object-cover" src="./src/img/recette02.png" alt="Poisson cru à la tahitienne">
+            <div class="recipe-card__content px-6 py-8 flex flex-col gap-y-8">
+              <h2 class="recipe-card__name font-Anton text-lg text-lpp-black leading-[1]">Poisson cru à la tahitienne</h2>
+              
+              <div class="flex flex-col gap-y-3.5">
+                <h3 class="recipe-card__category font-Manrope font-bold text-[.75rem] uppercase text-lpp-grey tracking-wider leading-[1]">Recette</h3>
+                <p class="recipe-card__desc font-Manrope text-sm text-lpp-black">Découper le thon en dés, le mettre dans un plat et le recouvrir de jus de citron vert (mieux vaut prendre un plat large et peu profond). Laisser reposer au réfrigérateur au moins 2 heures.</p>
+              </div>
+
+              <div class="flex flex-col gap-y-3.5">
+                <h3 class="recipe-card__category font-Manrope font-bold text-[.75rem] uppercase text-lpp-grey tracking-wider leading-[1]">Ingrédients</h3>
+                <ul class="recipe-card__ingredients grid grid-cols-2 gap-x-1.5 gap-y-5">
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Thon rouge (ou blanc)</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">200g</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Concombre</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">1</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Tomate</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">2</p>
+                  </li>
+                
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Carotte</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">1</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Citron vert</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">5</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Lait de coco</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">100ml</p>
+                  </li>
+                </ul>
+              </div>
+
+              <span class="recipe-card__time absolute top-5 right-5 px-4 py-1.5 bg-lpp-yellow rounded-2xl font-Manrope text-[.75rem]">60min</span>
+            </div>
+          </div>
+
+          <div class="recipe-card max-w-[432px] lg:max-w-[380px] w-full relative rounded-2xl bg-white overflow-clip shadow-2xl">
+            <img class="recipe-card__thumbnail w-full h-64 object-cover" src="./src/img/recette03.png" alt="Poulet coco réunionnais">
+            <div class="recipe-card__content px-6 py-8 flex flex-col gap-y-8">
+              <h2 class="recipe-card__name font-Anton text-lg text-lpp-black leading-[1]">Poulet coco réunionnais</h2>
+              
+              <div class="flex flex-col gap-y-3.5">
+                <h3 class="recipe-card__category font-Manrope font-bold text-[.75rem] uppercase text-lpp-grey tracking-wider leading-[1]">Recette</h3>
+                <p class="recipe-card__desc font-Manrope text-sm text-lpp-black">Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de 30 minutes, ajouter le coulis de </p>
+              </div>
+
+              <div class="flex flex-col gap-y-3.5">
+                <h3 class="recipe-card__category font-Manrope font-bold text-[.75rem] uppercase text-lpp-grey tracking-wider leading-[1]">Ingrédients</h3>
+                <ul class="recipe-card__ingredients grid grid-cols-2 gap-x-1.5 gap-y-5">
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Poulet</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">1</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Lait de coco</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">400ml</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Coulis de tomate</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">25cl</p>
+                  </li>
+                
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Oignon</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">1</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Poivron rouge</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">1</p>
+                  </li>
+                  <li class="recipe-card__ingredient">
+                    <p class="recipe-card__name font-Manrope font-medium text-sm text-lpp-black">Huile d'olive</p>
+                    <p class="recipe-card__quantity font-Manrope text-sm text-lpp-grey">1 cuillère à soupe</p>
+                  </li>
+                </ul>
+              </div>
+
+              <span class="recipe-card__time absolute top-5 right-5 px-4 py-1.5 bg-lpp-yellow rounded-2xl font-Manrope text-[.75rem]">80min</span>
+            </div>
+          </div>
+          
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
