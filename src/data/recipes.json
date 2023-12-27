@@ -2,7 +2,7 @@
     "recipes" : [
         {
             "id": 1,
-            "image": "recette01.jpg",
+            "image": "recette01.png",
             "name" : "Limonade de Coco",
             "servings" : 1,
             "ingredients": [
@@ -26,7 +26,8 @@
                     "unit" : "grammes"
                 },
                 {
-                    "ingredient": "Glaçons"
+                    "ingredient": "Glaçons",
+                    "quantity" : 2
                 }
             ],
             "time": 10,
@@ -36,7 +37,7 @@
         },
         {
             "id": 2,
-            "image": "recette02.jpg",
+            "image": "recette02.png",
             "name" : "Poisson Cru à la tahitienne",
             "servings": 2,
             "ingredients": [
@@ -73,7 +74,7 @@
             "ustensils": ["presse citron"]
         },{
             "id": 3,
-            "image": "recette03.jpg",
+            "image": "recette03.png",
             "name": "Poulet coco réunionnais",
             "servings": 4,
             "ingredients": [
@@ -111,7 +112,7 @@
             "ustensils": ["couteau"]
         },{
             "id": 4,
-            "image": "recette04.jpg",
+            "image": "recette04.png",
             "name": "Salade de riz",
             "servings": 4,
             "ingredients":[
@@ -150,7 +151,7 @@
         },
         {
             "id": 5,
-            "image": "recette05.jpg",
+            "image": "recette05.png",
             "name": "Tarte au thon",
             "servings": 4,
             "ingredients":[
@@ -190,7 +191,7 @@
         },
         {
             "id": 6,
-            "image": "recette06.jpg",
+            "image": "recette06.png",
             "name": "Tarte aux pommes",
             "servings": 6,
             "ingredients":[
@@ -229,7 +230,7 @@
             "ustensils": ["moule à tarte", "saladier", "fourchette"]
         },{
             "id": 7,
-            "image": "recette07.jpg",
+            "image": "recette07.png",
             "name": "Tartelettes au chocolat et aux fraises",
             "servings": 6,
             "ingredients":[
@@ -263,7 +264,7 @@
             "ustensils":["moule à tartelettes (6)", "casserole"]
         }, {
             "id": 8,
-            "image": "recette08.jpg",
+            "image": "recette08.png",
             "name": "Brownie",
             "servings": 10,
             "ingredients":[
@@ -305,7 +306,7 @@
         },
         {
             "id": 9,
-            "image": "recette09.jpg",
+            "image": "recette09.png",
             "name": "Salade Méditerannéene fraîche au chèvre",
             "servings": 4,
             "ingredients":[
@@ -338,7 +339,7 @@
         },
         {
             "id": 10,
-            "image": "recette10.jpg",
+            "image": "recette10.png",
             "name": "Tartiflette",
             "servings": 4,
             "ingredients":[
@@ -373,7 +374,7 @@
             "ustensils": ["plat à gratin", "couteau","Économe"]
         },{
             "id": 11,
-            "image": "recette11.jpg",
+            "image": "recette11.png",
             "name": "Salade tomate, mozzarella et pommes",
             "servings": 4,
             "ingredients":[
@@ -412,7 +413,7 @@
             "ustensils": ["couteau", "cuillère à melon" ]
         },{
             "id": 12,
-            "image": "recette12.jpg",
+            "image": "recette12.png",
             "name": "Compote pomme rhubarbe",
             "servings": 4,
             "ingredients":[
@@ -443,7 +444,7 @@
         },
         {
             "id": 13,
-            "image": "recette13.jpg",
+            "image": "recette13.png",
             "name": "Salade mâchée de patates",
             "servings": 2,
             "ingredients": [
@@ -480,7 +481,7 @@
         },
         {
             "id": 14,
-            "image": "recette14.jpg",
+            "image": "recette14.png",
             "name": "Galette Bretonne Saucisse et Fromage à raclette",
             "servings": 2,
             "ingredients": [
@@ -521,7 +522,7 @@
         },
         {
             "id": 15,
-            "image": "recette15.jpg",
+            "image": "recette15.png",
             "name": "Crêpes Chocolat Banane",
             "servings": 10,
             "ingredients": [
@@ -561,7 +562,7 @@
         },
         {
             "id": 16,
-            "image": "recette16.jpg",
+            "image": "recette16.png",
             "name": "Gratin de pâtes à la tomate",
             "servings": 2,
             "ingredients": [
@@ -586,7 +587,7 @@
                     "unit":"tiges"
                 },
                 {
-                    "ingredient": "huile d'olives",
+                    "ingredient": "huile d'olive",
                     "quantity": 2,
                     "unit": "cuillère à soupe"
                 }
@@ -598,7 +599,7 @@
         },
         {
             "id": 17,
-            "image": "recette17.jpg",
+            "image": "recette17.png",
             "name": "Smoothie à la fraise",
             "servings": 6,
             "ingredients": [
@@ -631,7 +632,7 @@
         },
         {
             "id": 18,
-            "image": "recette18.jpg",
+            "image": "recette18.png",
             "name": "Smoothie ananas et vanille",
             "servings": 5,
             "ingredients": [
@@ -657,7 +658,7 @@
         },
         {
             "id": 19,
-            "image": "recette19.jpg",
+            "image": "recette19.png",
             "name": "Shake Banane Kiwi",
             "servings": 4,
             "ingredients": [
@@ -691,7 +692,7 @@
         },
         {
             "id": 20,
-            "image": "recette20.jpg",
+            "image": "recette20.png",
             "name": "Pates Carbonara",
             "servings": 5,
             "ingredients": [
@@ -728,7 +729,7 @@
         },
         {
             "id": 21,
-            "image": "recette21.jpg",
+            "image": "recette21.png",
             "name": "Spaghettis à la bolognaise",
             "servings": 4,
             "ingredients": [
@@ -769,7 +770,7 @@
         },
         {
             "id": 22,
-            "image": "recette22.jpg",
+            "image": "recette22.png",
             "name": "Fondant au chocolat",
             "servings": 4,
             "ingredients": [
@@ -805,7 +806,7 @@
         },
         {
             "id": 23,
-            "image": "recette23.jpg",
+            "image": "recette23.png",
             "name": "Quiche lorraine",
             "servings": 4,
             "ingredients": [
@@ -846,7 +847,7 @@
         },
         {
             "id": 24,
-            "image": "recette24.jpg",
+            "image": "recette24.png",
             "name": "Salade de pâtes",
             "servings": 4,
             "ingredients": [
@@ -886,7 +887,7 @@
         },
         {
             "id": 25,
-            "image": "recette25.jpg",
+            "image": "recette25.png",
             "name": "Cookies",
             "servings": 4,
             "ingredients": [
@@ -922,7 +923,7 @@
         },
         {
             "id": 26,
-            "image": "recette26.jpg",
+            "image": "recette26.png",
             "name": "Soupe de tomates",
             "servings": 2,
             "ingredients": [
@@ -935,7 +936,7 @@
                     "quantity": 1
                 },
                 {
-                    "ingredient": "Huile d'olives"
+                    "ingredient": "huile d'olive"
                 },
                 {
                     "ingredient": "Oignon",
@@ -954,7 +955,7 @@
         },
         {
             "id": 27,
-            "image": "recette27.jpg",
+            "image": "recette27.png",
             "name": "Soupe à l'oseille",
             "servings": 4,
             "ingredients": [
@@ -989,7 +990,7 @@
         },
         {
             "id": 28,
-            "image": "recette28.jpg",
+            "image": "recette28.png",
             "name": "Soupe de poireaux",
             "servings": 4,
             "ingredients": [
@@ -1025,7 +1026,7 @@
         },
         {
             "id": 29,
-            "image": "recette29.jpg",
+            "image": "recette29.png",
             "name": "Houmous Express",
             "servings": 2,
             "ingredients": [
@@ -1057,7 +1058,7 @@
         },
         {
             "id": 30,
-            "image": "recette30.jpg",
+            "image": "recette30.png",
             "name": "Purée de pois cassés",
             "servings": 4,
             "ingredients": [
@@ -1083,7 +1084,7 @@
         },
         {
             "id": 31,
-            "image": "recette31.jpg",
+            "image": "recette31.png",
             "name": "Jardinière de légumes",
             "servings": 4,
             "ingredients": [
@@ -1118,7 +1119,7 @@
         },
         {
             "id": 32,
-            "image": "recette32.jpg",
+            "image": "recette32.png",
             "name": "Croque Monsieur à la dinde",
             "servings": 4,
             "ingredients": [
@@ -1160,7 +1161,7 @@
         },
         {
             "id": 33,
-            "image": "recette33.jpg",
+            "image": "recette33.png",
             "name": "Sandwich au saumon fumé",
             "servings": 4,
             "ingredients": [
@@ -1196,7 +1197,7 @@
         },
         {
             "id": 34,
-            "image": "recette34.jpg",
+            "image": "recette34.png",
             "name": "Purée de patate douce",
             "servings": 4,
             "ingredients": [
@@ -1225,7 +1226,7 @@
         },
         {
             "id": 35,
-            "image": "recette35.jpg",
+            "image": "recette35.png",
             "name": "Purée de carottes",
             "servings": 2,
             "ingredients": [
@@ -1265,7 +1266,7 @@
         },
         {
             "id": 36,
-            "image": "recette36.jpg",
+            "image": "recette36.png",
             "name": "Lasagne Courgettes et Chèvre",
             "servings": 2,
             "ingredients": [
@@ -1305,7 +1306,7 @@
         },
         {
             "id": 37,
-            "image": "recette37.jpg",
+            "image": "recette37.png",
             "name": "Courgettes farcies au boeuf",
             "servings": 2,
             "ingredients": [
@@ -1319,7 +1320,7 @@
                     "unit": "grammes"
                 },
                 {
-                    "ingredient": "Huile d'olives",
+                    "ingredient": "huile d'olive",
                     "quantity": 25,
                     "unit": "cl"
                 },
@@ -1328,7 +1329,7 @@
                     "quantity": 1
                 },
                 {
-                    "ingredient": "Coulis de tomates",
+                    "ingredient": "Coulis de tomate",
                     "quantity": 20,
                     "unit": "cl"
                 },
@@ -1346,7 +1347,7 @@
         },
         {
             "id": 38,
-            "image": "recette38.jpg",
+            "image": "recette38.png",
             "name": "Pain Perdu",
             "servings": 4,
             "ingredients": [
@@ -1377,7 +1378,7 @@
         },
         {
             "id": 39,
-            "image": "recette39.jpg",
+            "image": "recette39.png",
             "name": "Crumble aux pommes",
             "servings": 40,
             "ingredients": [
@@ -1408,7 +1409,7 @@
         },
         {
             "id": 40,
-            "image": "recette40.jpg",
+            "image": "recette40.png",
             "name": "Limonade",
             "servings": 4,
             "ingredients": [
@@ -1439,7 +1440,7 @@
         },
         {
             "id": 41,
-            "image": "recette41.jpg",
+            "image": "recette41.png",
             "name": "Mousse au chocolat",
             "servings": 4,
             "ingredients": [
@@ -1465,7 +1466,7 @@
         }, 
         {
             "id": 42,
-            "image": "recette42.jpg",
+            "image": "recette42.png",
             "name": "Charlotte au poires",
             "servings": 3,
             "ingredients": [
@@ -1495,7 +1496,7 @@
         },
         {
             "id": 43,
-            "image": "recette43.jpg",
+            "image": "recette43.png",
             "name": "Tarte au citron",
             "servings": 6,
             "ingredients": [
@@ -1529,7 +1530,7 @@
         }, 
         {
             "id": 44,
-            "image": "recette44.jpg",
+            "image": "recette44.png",
             "name": "Crème dessert au chocolat",
             "servings": 6,
             "ingredients": [
@@ -1566,7 +1567,7 @@
         },
         {
             "id": 45,
-            "image": "recette45.jpg",
+            "image": "recette45.png",
             "name": "Crème pâtissière",
             "servings": 8,
             "ingredients": [
@@ -1597,7 +1598,7 @@
         },
         {
             "id": 46,
-            "image": "recette46.jpg",
+            "image": "recette46.png",
             "name": "Far breton",
             "servings": 6,
             "ingredients": [
@@ -1638,7 +1639,7 @@
         },
         {
             "id": 47,
-            "image": "recette47.jpg",
+            "image": "recette47.png",
             "name": "Mousse au citron",
             "servings": 6,
             "ingredients": [
@@ -1670,7 +1671,7 @@
         },
         {
             "id": 48,
-            "image": "recette48.jpg",
+            "image": "recette48.png",
             "name": "Pizza",
             "servings": 4,
             "ingredients": [
@@ -1706,16 +1707,16 @@
         },
         {
             "id": 49,
-            "image": "recette49.jpg",
+            "image": "recette49.png",
             "name": "Smoothie tropical",
             "servings": 4,
             "ingredients": [
                 {
-                    "ingredient": "Bananes",
+                    "ingredient": "Banane",
                     "quantity": 2
                 },
                 {
-                    "ingredient": "Kiwis",
+                    "ingredient": "Kiwi",
                     "quantity": 3
                 },
                 {
@@ -1740,7 +1741,7 @@
         },
         {
             "id": 50,
-            "image": "recette50.jpg",
+            "image": "recette50.png",
             "name": "Frangipane",
             "servings": 2,
             "ingredients": [
