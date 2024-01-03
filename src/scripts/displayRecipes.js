@@ -4,7 +4,7 @@ export function displayRecipes(recipes) {
     recipes.forEach((recipe, index) => {
         recipe.name = recipe.name[0].toUpperCase()+recipe.name.slice(1).toLowerCase()
         recipesContainer.insertAdjacentHTML("beforeend", `
-            <div class="recipe-card relative rounded-2xl bg-white overflow-clip shadow-2xl" data-recipe-id="${recipe.id}">
+            <div class="recipe-card relative rounded-2xl bg-white overflow-clip shadow-2xl" data-recipe-num="${recipe.id}">
                 <img class="recipe-card__thumbnail w-full h-64 object-cover" src="./src/img/${recipe.image}" alt="${recipe.name}">
                 <div class="recipe-card__content px-6 py-8 flex flex-col gap-y-8">
                     <h2 class="recipe-card__name font-Anton text-lg text-lpp-black leading-[1]">${recipe.name}</h2>
@@ -25,6 +25,7 @@ export function displayRecipes(recipes) {
                             }).join('')}
                         </ul>
                     </div>
+                    <span class="recipe-card__time absolute top-5 right-5 px-4 py-1.5 bg-lpp-yellow rounded-2xl font-Manrope text-[.75rem]">${recipe.time}min</span>
                 </div>
             </div>
         `)

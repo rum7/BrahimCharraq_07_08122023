@@ -24,5 +24,6 @@ function resetInputSearch(event) {
     const input = btn.previousElementSibling
 
     input.value = ""
+    input.dispatchEvent(new Event('input'))
     btn.classList.add('hidden')
 }
