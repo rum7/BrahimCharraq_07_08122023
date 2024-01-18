@@ -9,7 +9,8 @@ tagnameList.forEach((tagname) => {
 
 function toggleDropdown(event) {
     const currentbtn = event.currentTarget
-    
+    const currentInput = currentbtn.nextElementSibling.firstElementChild.firstElementChild
+
     tagnameList.forEach(btn => {
         if (btn.getAttribute('data-state') !== "close" && btn !== currentbtn) {
             animeDropdown(btn)
@@ -17,6 +18,7 @@ function toggleDropdown(event) {
     })
 
     animeDropdown(currentbtn)
+    currentInput.focus()
 }
 
 function animeDropdown(btn) {
@@ -43,7 +45,14 @@ function animeDropdown(btn) {
 
 // Close dropdown
 document.addEventListener('click', (event) => {
-    if (!event.target.matches('.tagname-list') && !event.target.matches('.tagname-filter')) {
+    const ingredientTagsContainer = document.querySelector('.filters-list-ing')
+    const appareilsTagsContainer = document.querySelector('.filters-list-app')
+    const ustensilTagsContainer = document.querySelector('.filters-list-ust')
+
+    if ((event.target.contains(ingredientTagsContainer) && event.target !== ingredientTagsContainer)
+        || (event.target.contains(appareilsTagsContainer) && event.target !== appareilsTagsContainer)
+        || (event.target.contains(ustensilTagsContainer) && event.target !== ustensilTagsContainer))
+    {
         tagnameList.forEach(btn => {
             if (btn.getAttribute('data-state') !== "close") {
                 animeDropdown(btn)
@@ -66,6 +75,11 @@ const tagListContainer = document.querySelector('.tags__list')
 function toggleFilter(event) {
     const filter = event.target
     filter.classList.toggle('selected')
+
+    const searchInput = filter.closest('div').firstElementChild
+    searchInput.value = ""
+    searchInput.dispatchEvent(new Event('input'))
+    searchInput.focus()
 }
 
 let tagsToRemove = []
@@ -91,20 +105,25 @@ export function displaySelectedTag(tagName) {
         'duration-200'
     )
 
-    filterBtn.addEventListener('click', () => toggleFilter(tagName))
+    filterBtn.addEventListener('click', (event) => {
+        toggleFilter(tagName)
+    })
+    filterBtn.dataset.filterCategory = tagName.target.closest('ul').id
     filterBtn.textContent = tagName.currentTarget.textContent
     tag.appendChild(filterBtn)
     tagListContainer.appendChild(tag)
 
-    tagsToRemove = [...tagsToRemove, tagName.currentTarget.textContent]
+    const tagId = `${tagName.currentTarget.textContent.toLowerCase()}-${tagName.target.closest('ul').id.toLowerCase()}`
+    tagsToRemove = [...tagsToRemove, tagId]
 
     return filterBtn
 }
 
-export function removeSelectedTag(filterToRemove) {
-    const indexTagToRemove = tagsToRemove.indexOf(filterToRemove)
+export function removeSelectedTag(filterToRemove, parentId) {
+    const tagId = `${filterToRemove.toLowerCase()}-${parentId.toLowerCase()}`
+    const indexTagToRemove = tagsToRemove.indexOf(tagId)
     tagsToRemove.splice(indexTagToRemove, 1)
-    tagListContainer.removeChild(tagListContainer.childNodes[indexTagToRemove])
+    tagListContainer.removeChild(tagListContainer.children[indexTagToRemove])
 }
 
 
@@ -148,52 +167,3 @@ export function displayFilterTag(ingredients, appareils, ustensils) {
         })
     })
 }
-
-// export function displayFilterTag(ingredients, appareils, ustensils) {
-//     const category = [
-//         {"ingredients": ingredients},
-//         {"appareils": appareils},
-//         {"ustensils": ustensils}
-//     ]
-
-//     category.forEach(category => {
-//         const categoryName = Object.keys(category)[0]
-//         const categoryContent = category[categoryName]
-//         const tagCategoryList = document.getElementById(`tags-${categoryName}-list`)
-
-//         const categoryListSorted = categoryContent.sort((a, b) => Object.keys(a)[0].localeCompare(Object.keys(b)[0]))
-//         categoryListSorted.forEach(item => {
-//             let content
-//             let id
-//             for (const [key, value] of Object.entries(item)) {
-//                 content = key[0].toUpperCase()+key.slice(1)
-//                 id = value
-//             }
-//             const tag = document.createElement('li')
-//             tag.dataset.recipeNum = id
-//             tag.dataset.recipeIngredient = content
-//             const filterBtn = document.createElement('button')
-//             filterBtn.classList.add(
-//                 'tagname-filter', 
-//                 'w-full',
-//                 'text-left',
-//                 'px-4',
-//                 'py-2',
-//                 'text-ellipsis',
-//                 'whitespace-nowrap',
-//                 'overflow-hidden',
-//                 'hover:bg-lpp-yellow', 
-//                 '[&.selected]:pr-10',
-//                 '[&.selected]:font-bold',
-//                 `[&.selected]:bg-[url('../img/btn-delete-tag-1.svg')]`,
-//                 '[&.selected]:bg-no-repeat',
-//                 '[&.selected]:bg-right-15-center',
-//                 '[&.selected]:bg-lpp-yellow'
-//             )
-//             filterBtn.addEventListener('click', toggleFilter)
-//             filterBtn.textContent = content
-//             tag.appendChild(filterBtn)
-//             tagCategoryList.appendChild(tag)
-//         })
-//     })
-// }

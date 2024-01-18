@@ -46,7 +46,7 @@
       <main class="py-8 px-8 lg:px-[102px]">
         <section class="search flex justify-between flex-wrap gap-x-16 gap-y-5">
           <div class="filters order-2 lg:order-1 flex flex-wrap gap-x-16 gap-y-5">
-            <div class="relative block text-left w-52 shadow-sm rounded-xl transition-all ease-in-out duration-200">
+            <div class="filters-list-ing relative block text-left w-52 shadow-sm rounded-xl transition-all ease-in-out duration-200">
               <button 
                 id="ingredients-list" 
                 type="button" 
@@ -61,7 +61,7 @@
 
               <div class="absolute z-10 h-0 top-[41px] rounded-b-xl overflow-clip bg-white w-full focus:outline-none origin-top transition-all ease-out duration-200" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                 <div class="relative h-[200px] overflow-y-auto font-Manrope font-normal text-sm text-lpp-black" role="none">
-                  <input type="text" id="filter-ingredients" class="search-recipe w-[calc(100%-2rem)] my-3 mx-auto block p-2 ring-1 ring-lpp-lightgrey rounded-sm text-lpp-grey">
+                  <input type="text" id="filter-ingredients" class="search-recipe search-filter w-[calc(100%-2rem)] my-3 mx-auto block p-2 ring-1 ring-lpp-lightgrey rounded-sm text-lpp-grey">
                   <button class="reset-search absolute top-[26px] right-[52px] hidden">
                     <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
                       <path d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7" stroke="#7A7A7A" stroke-linecap="round" stroke-linejoin="round"/>
@@ -81,7 +81,7 @@
               
             </div>
 
-            <div class="relative block text-left w-52 shadow-sm rounded-xl transition-all ease-in-out duration-200">
+            <div class="filters-list-app relative block text-left w-52 shadow-sm rounded-xl transition-all ease-in-out duration-200">
               <button 
                 id="appareils-list" 
                 type="button" 
@@ -96,7 +96,7 @@
 
               <div class="absolute z-10 h-0 top-[41px] rounded-b-xl overflow-clip bg-white w-full focus:outline-none origin-top transition-all ease-out duration-200" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                 <div class="relative h-[200px] overflow-y-auto font-Manrope font-normal text-sm text-lpp-black" role="none">
-                  <input type="text" id="filter-appareils" class="search-recipe w-[calc(100%-2rem)] my-3 mx-auto block p-2 ring-1 ring-lpp-lightgrey rounded-sm text-lpp-grey">
+                  <input type="text" id="filter-appareils" class="search-recipe search-filter w-[calc(100%-2rem)] my-3 mx-auto block p-2 ring-1 ring-lpp-lightgrey rounded-sm text-lpp-grey">
                   <button class="reset-search absolute top-[26px] right-[52px] hidden">
                     <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
                       <path d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7" stroke="#7A7A7A" stroke-linecap="round" stroke-linejoin="round"/>
@@ -116,22 +116,22 @@
               
             </div>
 
-            <div class="relative block text-left w-52 shadow-sm rounded-xl transition-all ease-in-out duration-200">
+            <div class="filters-list-ust relative block text-left w-52 shadow-sm rounded-xl transition-all ease-in-out duration-200">
               <button 
-                id="ustensiles-list" 
+                id="ustensils-list" 
                 type="button" 
                 class="tagname-list relative z-20 inline-flex justify-between items-center rounded-xl w-full h-14 p-4 bg-white hover:bg-lpp-yellow transition-all ease-in-out duration-200"
                 aria-expanded="true" 
                 aria-haspopup="true"
                 data-state="close"
               >
-                <span class="font-Manrope font-medium text-[1rem] text-lpp-black pointer-events-none">Ustensiles</span>
+                <span class="font-Manrope font-medium text-[1rem] text-lpp-black pointer-events-none">Ustensils</span>
                 <span class="arrow arrow-before arrow-after pointer-events-none"></span>
               </button>
 
               <div class="absolute z-10 h-0 top-[41px] rounded-b-xl overflow-clip bg-white w-full focus:outline-none origin-top transition-all ease-out duration-200" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                 <div class="relative h-[200px] overflow-y-auto font-Manrope font-normal text-sm text-lpp-black" role="none">
-                  <input type="text" id="filter-ustensiles" class="search-recipe w-[calc(100%-2rem)] my-3 mx-auto block p-2 ring-1 ring-lpp-lightgrey rounded-sm text-lpp-grey">
+                  <input type="text" id="filter-ustensils" class="search-recipe search-filter w-[calc(100%-2rem)] my-3 mx-auto block p-2 ring-1 ring-lpp-lightgrey rounded-sm text-lpp-grey">
                   <button class="reset-search absolute top-[26px] right-[52px] hidden">
                     <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
                       <path d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7" stroke="#7A7A7A" stroke-linecap="round" stroke-linejoin="round"/>
