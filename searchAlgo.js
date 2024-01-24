@@ -1984,6 +1984,7 @@ if (searchValue.trim().length >= 3) {
 
 // Native search
 if (searchValue.trim().length >= 3) {
+  for (let index = 0; index < recipes.length; index++) {
     const nameKeywords = [... new Set(recipes[index].name.toLowerCase().split(' '))]
 
     let descriptionKeywords = recipes[index].description.toLowerCase().replace(/[^\p{L}\s]/gu, '').replace(/\s{2,}/g, ' ').trim()
@@ -2026,7 +2027,7 @@ if (searchValue.trim().length >= 3) {
     } else {
         console.log('RIEN TROUVÉ')            
     } 
-
+  }
 } else {
     console.log('RIEN TROUVÉ DU TOUT')            
 }
