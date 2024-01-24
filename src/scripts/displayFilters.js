@@ -160,6 +160,7 @@ export function displayFilterTag(ingredients, appareils, ustensils) {
                 '[&.selected]:bg-right-15-center',
                 '[&.selected]:bg-lpp-yellow'
             )
+            filterBtn.dataset.filterCategory = `tags-${categoryName}-list`
             filterBtn.addEventListener('click', toggleFilter)
             filterBtn.textContent = item[0].toUpperCase()+item.slice(1)
             tag.appendChild(filterBtn)
