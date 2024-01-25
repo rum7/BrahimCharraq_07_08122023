@@ -1949,7 +1949,7 @@ const recipes = [
     }
 ]
 
-let searchValue = "citron"
+let searchValue = "poulet"
 let searchKeywords = searchValue.length >= 3 ? searchValue.split(' ') : []
 
 
