@@ -1,7 +1,0 @@
-node_modules
-lab
-src
-.html
-.json
-!functionalSearch.js
-!nativeSearch.js
