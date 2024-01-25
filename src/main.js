@@ -29,9 +29,6 @@ let visibleTagIngredients = Array.from(document.querySelectorAll('#tags-ingredie
 let visibleTagAppareils = Array.from(document.querySelectorAll('#tags-appareils-list > li:not(.hidden)'))
 let visibleTagUstensils = Array.from(document.querySelectorAll('#tags-ustensils-list > li:not(.hidden)'))
 
-/**
- * LINEAR SEARCH FUNCTION
- */
 
 function filterRecipes(event) {
     let searchValue
@@ -143,6 +140,10 @@ function filterRecipes(event) {
     visibleRecipeAppareils = [... new Set(visibleRecipeAppareils.flat())]
     visibleRecipeUstensils = [... new Set(visibleRecipeUstensils.flat())]
 
+    visibleTagIngredients = Array.from(document.querySelectorAll('#tags-ingredients-list > li:not(.hidden)'))
+    visibleTagAppareils = Array.from(document.querySelectorAll('#tags-appareils-list > li:not(.hidden)'))
+    visibleTagUstensils = Array.from(document.querySelectorAll('#tags-ustensils-list > li:not(.hidden)'))
+
     tagsIngredientsList.forEach((tagIngredient, index) => {
         const isMatch = visibleRecipeIngredients.includes(tagIngredient.children[0].textContent.toLowerCase())
         isMatch || tagIngredient.children[0].classList.contains('selected') || visibleRecipeIngredients.length === 0 ? tagsIngredientsList[index].classList.remove('hidden')
@@ -175,6 +176,53 @@ function filterRecipes(event) {
         noResult.innerHTML = `Aucune recette ne contient <span class="italic">"${currentSearchTag.join(', ')}"</span>. Essayez plutôt de rechercher <span class="italic">« <strong>tarte aux pommes</strong> », « <strong>poisson</strong> », etc.</span>`
 
     }else{
+        noResult.classList.add('hidden')
+    }
+}
+
+
+// Listener to all type of tags to handle display during "tag research"
+const filterIngredients = document.getElementById('filter-ingredients')
+filterIngredients.addEventListener('input', (event) => {
+    filterTags(event, visibleTagIngredients, "ingredients")
+})
+
+const filterAppareils = document.getElementById('filter-appareils')
+filterAppareils.addEventListener('input', (event) => {
+    filterTags(event, visibleTagAppareils, "appareils")
+})
+
+const filterUstensils = document.getElementById('filter-ustensils')
+filterUstensils.addEventListener('input', (event) => {
+    filterTags(event, visibleTagUstensils, "ustensils")
+})
+
+function filterTags(event, visibleTagList, tagType) {
+    const searchValue = event.currentTarget.value.toLowerCase().trim()
+    const keywordList = searchValue.split(' ')
+
+    if (searchValue.length >= 1) {
+        keywordList.every(word => {
+            visibleTagList.some((keyword, index) => {
+                const result = keyword.children[0].textContent.toLowerCase().indexOf(word)
+                result !== -1 ? visibleTagList[index].classList.remove('hidden') : visibleTagList[index].classList.add('hidden')
+            })
+        })
+    } else {
+        for (const tag of visibleTagList) {
+            tag.classList.remove('hidden')
+        }
+    }
+
+    const hiddenTags = Array.from(document.querySelectorAll(`#tags-${tagType}-list > li.hidden`))
+    const noResult = document.querySelector(`#tags-${tagType}-list`).nextElementSibling
+    const inputElement = document.getElementById(`filter-${tagType}`)
+    
+    if (hiddenTags.length === visibleTagList.length) {
+        inputElement.classList.add('focus:outline-red-500')
+        noResult.classList.remove('hidden')
+    }else{
+        inputElement.classList.remove('focus:outline-red-500')
         noResult.classList.add('hidden')
     }
 }
