@@ -201,6 +201,7 @@ filterUstensils.addEventListener('input', (event) => {
     filterTags(event, visibleTagUstensils, "ustensils")
 })
 
+// Tag search result display management
 function filterTags(event, visibleTagList, tagType) {
     const searchValue = event.currentTarget.value.toLowerCase().trim()
     const keywordList = searchValue.split(' ')
