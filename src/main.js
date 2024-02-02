@@ -25,11 +25,14 @@ const tagnameFilter = Array.from(document.querySelectorAll('.tagname-filter'))
 tagnameFilter.forEach((filter) => filter.addEventListener('click', filterRecipes))
 
 let selectedTag = []
-let visibleTagIngredients = Array.from(document.querySelectorAll('#tags-ingredients-list > li:not(.hidden)'))
-let visibleTagAppareils = Array.from(document.querySelectorAll('#tags-appareils-list > li:not(.hidden)'))
-let visibleTagUstensils = Array.from(document.querySelectorAll('#tags-ustensils-list > li:not(.hidden)'))
+let visibleTagIngredients = []
+let visibleTagAppareils = []
+let visibleTagUstensils = []
 
 
+/**
+ * LINEAR SEARCH FUNCTION
+ */
 function filterRecipes(event) {
     let searchValue
     // Define current searchValue
@@ -144,6 +147,7 @@ function filterRecipes(event) {
     visibleTagAppareils = Array.from(document.querySelectorAll('#tags-appareils-list > li:not(.hidden)'))
     visibleTagUstensils = Array.from(document.querySelectorAll('#tags-ustensils-list > li:not(.hidden)'))
 
+    // Update tags list from current research
     tagsIngredientsList.forEach((tagIngredient, index) => {
         const isMatch = visibleRecipeIngredients.includes(tagIngredient.children[0].textContent.toLowerCase())
         isMatch || tagIngredient.children[0].classList.contains('selected') || visibleRecipeIngredients.length === 0 ? tagsIngredientsList[index].classList.remove('hidden')
@@ -218,7 +222,8 @@ function filterTags(event, visibleTagList, tagType) {
     const noResult = document.querySelector(`#tags-${tagType}-list`).nextElementSibling
     const inputElement = document.getElementById(`filter-${tagType}`)
     
-    if (hiddenTags.length === visibleTagList.length) {
+    
+    if (hiddenTags.length === visibleTagList.length && hiddenTags.length !== 0) {
         inputElement.classList.add('focus:outline-red-500')
         noResult.classList.remove('hidden')
     }else{
