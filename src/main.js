@@ -222,8 +222,7 @@ function filterTags(event, visibleTagList, tagType) {
     const hiddenTags = Array.from(document.querySelectorAll(`#tags-${tagType}-list > li.hidden`))
     const noResult = document.querySelector(`#tags-${tagType}-list`).nextElementSibling
     const inputElement = document.getElementById(`filter-${tagType}`)
-    
-    
+        
     if (hiddenTags.length === visibleTagList.length && hiddenTags.length !== 0) {
         inputElement.classList.add('focus:outline-red-500')
         noResult.classList.remove('hidden')
