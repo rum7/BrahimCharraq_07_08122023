@@ -30,9 +30,8 @@ let visibleTagAppareils = []
 let visibleTagUstensils = []
 
 /**
- * LINEAR SEARCH FUNCTION
+ * BINARY SEARCH FUNCTION
  */
-
 function filterRecipes(event) {
     let searchValue
     // Define current searchValue
@@ -83,85 +82,91 @@ function filterRecipes(event) {
     let visibleRecipeAppareils = []
     let visibleRecipeUstensils = []
 
-    if (searchValue.trim().length >= 3 || selectedTag.length >= 1) {
-        recipes.forEach((recipe, index) => {
+
+    if (searchKeywords.length >= 1 || selectedTag.length >= 1) {
+        for (let index = 0; index < recipes.length; index++) {
             // Input research
-            const nameKeywords = [... new Set(recipe.name.toLowerCase().split(' '))]
+            const nameKeywords = [... new Set(recipes[index].name.toLowerCase().split(' '))]
 
-            let descriptionKeywords = recipe.description.toLowerCase().replace(/[^\p{L}\s]/gu, '').replace(/\s{2,}/g, ' ').trim()
-            descriptionKeywords = [... new Set(descriptionKeywords.split(' '))]
+            let descriptionKeywords = recipes[index].description.toLowerCase().replace(/[^\p{L}\s]/gu, '').replace(/\s{2,}/g, ' ').trim()
+            descriptionKeywords = [... new Set(descriptionKeywords.split(' '))].sort((a, b) => a.localeCompare(b))
 
-            const ingredientsKeywords = recipe.ingredients.map(item => item.ingredient.toLowerCase()).flat()
+            let ingredientsKeywords = []
+            for (const item of recipes[index].ingredients) { ingredientsKeywords = [... ingredientsKeywords, item.ingredient.toLowerCase().replace(/[^\p{L}\s]/gu, '').replace(/\s{2,}/g, ' ').trim().split(' ')].flat() }
 
             const recipeCardKeywords = [... new Set([... nameKeywords, ingredientsKeywords, descriptionKeywords].flat())]
+            recipeCardKeywords.sort((a, b) => a.localeCompare(b))
 
             let searchIsMatching
-
             if (searchKeywords.length >= 1) {
-                searchIsMatching = searchKeywords.every(word => recipeCardKeywords.some(keyword => keyword.includes(word)))
-            }
-                
+                searchIsMatching = searchKeywords.every(word => {
+                    const result = isSearchMatching(recipeCardKeywords, word)
+                    return result
+                })
+            } 
+
 
             // Tag research
-            const appareilsKeywords = [recipe.appliance.toLowerCase()]
+            let ingredientsTagsKeywords = []
+            for (const item of recipes[index].ingredients) { ingredientsTagsKeywords = [... ingredientsTagsKeywords, item.ingredient.toLowerCase()] }
+            ingredientsTagsKeywords.sort((a, b) => a.localeCompare(b))
 
-            const ustensilsKeywords = recipe.ustensils.map(item => item.toLowerCase())
+            let appareilsTagsKeywords = [recipes[index].appliance.toLowerCase()]
+            appareilsTagsKeywords.sort((a, b) => a.localeCompare(b))
+
+            let ustensilsTagsKeywords = []
+            for (const item of recipes[index].ustensils) { ustensilsTagsKeywords = [... ustensilsTagsKeywords, item.toLowerCase()] }
+            ustensilsTagsKeywords.sort((a, b) => a.localeCompare(b))
 
             let filterIsMatching
-
             if (selectedTag.length >= 1) {
                 filterIsMatching = selectedTag.every(word => {
+                    let result
                     if (Object.values(word)[0] === "tags-ingredients-list") {
-                        return ingredientsKeywords.includes(Object.keys(word)[0])
+                        result = isSearchMatching(ingredientsTagsKeywords, Object.keys(word)[0])
                     }
                     if (Object.values(word)[0] === "tags-appareils-list") {
-                        return appareilsKeywords.includes(Object.keys(word)[0])
+                        result = isSearchMatching(appareilsTagsKeywords, Object.keys(word)[0])
                     }
                     if (Object.values(word)[0] === "tags-ustensils-list") {
-                        return ustensilsKeywords.includes(Object.keys(word)[0])
+                        result = isSearchMatching(ustensilsTagsKeywords, Object.keys(word)[0])
                     }
+                    return result
                 })
             }
-
+            
             const displayCard = (searchIsMatching??true) && (filterIsMatching??true)
-
             if (displayCard) {
                 recipesCards[index].classList.remove('hidden')
-                visibleRecipeIngredients = [...visibleRecipeIngredients, ingredientsKeywords]
-                visibleRecipeAppareils = [...visibleRecipeAppareils, appareilsKeywords]
-                visibleRecipeUstensils = [...visibleRecipeUstensils, ustensilsKeywords]
+                visibleRecipeIngredients = [...visibleRecipeIngredients, ingredientsTagsKeywords]
+                visibleRecipeAppareils = [...visibleRecipeAppareils, appareilsTagsKeywords]
+                visibleRecipeUstensils = [...visibleRecipeUstensils, ustensilsTagsKeywords]
             } else {
                 recipesCards[index].classList.add('hidden')
-            }            
-        })
+            } 
+        }
+
     } else {
-        recipesCards.forEach(recipe => recipe.classList.remove('hidden'))
+        for (const recipe of recipesCards) {
+            recipe.classList.remove('hidden')
+        }
     }
 
-    const hiddenRecipes = document.querySelectorAll('.recipe-card.hidden')
+    // Based on visible recipes, display available tags in lists
     visibleRecipeIngredients = [... new Set(visibleRecipeIngredients.flat())]
     visibleRecipeAppareils = [... new Set(visibleRecipeAppareils.flat())]
     visibleRecipeUstensils = [... new Set(visibleRecipeUstensils.flat())]
+    
+    handleTagDisplaying(visibleRecipeIngredients, tagsIngredientsList)
+    handleTagDisplaying(visibleRecipeAppareils, tagsAppareilsList)
+    handleTagDisplaying(visibleRecipeUstensils, tagsUstensilsList)
 
-    tagsIngredientsList.forEach((tagIngredient, index) => {
-        const isMatch = visibleRecipeIngredients.includes(tagIngredient.children[0].textContent.toLowerCase())
-        isMatch || tagIngredient.children[0].classList.contains('selected') || visibleRecipeIngredients.length === 0 ? tagsIngredientsList[index].classList.remove('hidden')
-        : tagsIngredientsList[index].classList.add('hidden')
-    })
-
-    tagsAppareilsList.forEach((tagAppareil, index) => {
-        const isMatch = visibleRecipeAppareils.includes(tagAppareil.children[0].textContent.toLowerCase())
-        isMatch || tagAppareil.children[0].classList.contains('selected') || visibleRecipeAppareils.length === 0 ? tagsAppareilsList[index].classList.remove('hidden')
-        : tagsAppareilsList[index].classList.add('hidden')
-    })
-
-    tagsUstensilsList.forEach((tagUstensil, index) => {
-        const isMatch = visibleRecipeUstensils.includes(tagUstensil.children[0].textContent.toLowerCase())
-        isMatch || tagUstensil.children[0].classList.contains('selected') || visibleRecipeUstensils.length === 0 ? tagsUstensilsList[index].classList.remove('hidden')
-        : tagsUstensilsList[index].classList.add('hidden')
-    })
-
+    visibleTagIngredients = Array.from(document.querySelectorAll('#tags-ingredients-list > li:not(.hidden)'))
+    visibleTagAppareils = Array.from(document.querySelectorAll('#tags-appareils-list > li:not(.hidden)'))
+    visibleTagUstensils = Array.from(document.querySelectorAll('#tags-ustensils-list > li:not(.hidden)'))
+    
     // Update recipe counter
+    const hiddenRecipes = document.querySelectorAll('.recipe-card.hidden')
     recipeCounter = recipes.length - hiddenRecipes.length
     recipeCounterNode.textContent = `${recipeCounter} ${recipeCounter > 1 ? 'recettes':'recette'}`
 
@@ -175,6 +180,100 @@ function filterRecipes(event) {
         noResult.innerHTML = `Aucune recette ne contient <span class="italic">"${currentSearchTag.join(', ')}"</span>. Essayez plutôt de rechercher <span class="italic">« <strong>tarte aux pommes</strong> », « <strong>poisson</strong> », etc.</span>`
 
     }else{
+        noResult.classList.add('hidden')
+    }
+}
+
+function isSearchMatching(keywordList, searchingWord) {
+    let start = 0
+    let end = keywordList.length - 1
+    let found = false
+
+    while (start <= end) {
+        let mid = Math.floor((start + end) / 2)
+        let middleKeyword = keywordList[mid]
+        let comparingWords = middleKeyword.localeCompare(searchingWord)
+
+        if (middleKeyword.indexOf(searchingWord) !== -1) {
+            found = true
+            break
+        } else if (comparingWords < 0) {
+            start = mid + 1
+        } else if (comparingWords > 0) {
+            end = mid - 1
+        }
+    }
+
+    return found
+}
+
+function handleTagDisplaying(recipeList, tagList) {
+    if (recipeList.length !== 0) {
+        for (const tag of tagList) {
+            let isVisible = false
+
+            for (const visibleRecipe of recipeList) {
+                if (visibleRecipe === tag.children[0].textContent.toLowerCase() || tag.children[0].classList.contains('selected')) {
+                    isVisible = true
+                }
+            }
+
+            if (isVisible === true) {
+                tag.classList.remove('hidden')
+                isVisible = false
+            } else {
+                tag.classList.add('hidden')
+            }
+        }
+    } else {
+        for (const tag of tagList) {
+            tag.classList.remove('hidden')
+        }
+    }
+}
+
+// Listener to all type of tags to handle display during "tag research"
+const filterIngredients = document.getElementById('filter-ingredients')
+filterIngredients.addEventListener('input', (event) => {
+    filterTags(event, visibleTagIngredients, "ingredients")
+})
+
+const filterAppareils = document.getElementById('filter-appareils')
+filterAppareils.addEventListener('input', (event) => {
+    filterTags(event, visibleTagAppareils, "appareils")
+})
+
+const filterUstensils = document.getElementById('filter-ustensils')
+filterUstensils.addEventListener('input', (event) => {
+    filterTags(event, visibleTagUstensils, "ustensils")
+})
+
+function filterTags(event, visibleTagList, tagType) {
+    const searchValue = event.currentTarget.value.toLowerCase().trim()
+    const keywordList = searchValue.split(' ')
+
+    if (searchValue.length >= 1) {
+        keywordList.every(word => {
+            visibleTagList.some((keyword, index) => {
+                const result = isSearchMatching([keyword.children[0].textContent.toLowerCase()], word)
+                result === true ? visibleTagList[index].classList.remove('hidden') : visibleTagList[index].classList.add('hidden')
+            })
+        })
+    } else {
+        for (const tag of visibleTagList) {
+            tag.classList.remove('hidden')
+        }
+    }
+
+    const hiddenTags = Array.from(document.querySelectorAll(`#tags-${tagType}-list > li.hidden`))
+    const noResult = document.querySelector(`#tags-${tagType}-list`).nextElementSibling
+    const inputElement = document.getElementById(`filter-${tagType}`)
+    
+    if (hiddenTags.length === visibleTagList.length) {
+        inputElement.classList.add('focus:outline-red-500')
+        noResult.classList.remove('hidden')
+    }else{
+        inputElement.classList.remove('focus:outline-red-500')
         noResult.classList.add('hidden')
     }
 }
