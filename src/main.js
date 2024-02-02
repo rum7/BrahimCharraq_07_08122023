@@ -25,9 +25,9 @@ const tagnameFilter = Array.from(document.querySelectorAll('.tagname-filter'))
 tagnameFilter.forEach((filter) => filter.addEventListener('click', filterRecipes))
 
 let selectedTag = []
-let visibleTagIngredients = Array.from(document.querySelectorAll('#tags-ingredients-list > li:not(.hidden)'))
-let visibleTagAppareils = Array.from(document.querySelectorAll('#tags-appareils-list > li:not(.hidden)'))
-let visibleTagUstensils = Array.from(document.querySelectorAll('#tags-ustensils-list > li:not(.hidden)'))
+let visibleTagIngredients = []
+let visibleTagAppareils = []
+let visibleTagUstensils = []
 
 /**
  * BINARY SEARCH FUNCTION
