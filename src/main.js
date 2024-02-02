@@ -29,6 +29,7 @@ let visibleTagIngredients = []
 let visibleTagAppareils = []
 let visibleTagUstensils = []
 
+
 /**
  * BINARY SEARCH FUNCTION
  */
@@ -157,6 +158,7 @@ function filterRecipes(event) {
     visibleRecipeAppareils = [... new Set(visibleRecipeAppareils.flat())]
     visibleRecipeUstensils = [... new Set(visibleRecipeUstensils.flat())]
     
+    // Update tags list from current research
     handleTagDisplaying(visibleRecipeIngredients, tagsIngredientsList)
     handleTagDisplaying(visibleRecipeAppareils, tagsAppareilsList)
     handleTagDisplaying(visibleRecipeUstensils, tagsUstensilsList)
@@ -248,6 +250,7 @@ filterUstensils.addEventListener('input', (event) => {
     filterTags(event, visibleTagUstensils, "ustensils")
 })
 
+// Tag search result display management
 function filterTags(event, visibleTagList, tagType) {
     const searchValue = event.currentTarget.value.toLowerCase().trim()
     const keywordList = searchValue.split(' ')
@@ -269,7 +272,7 @@ function filterTags(event, visibleTagList, tagType) {
     const noResult = document.querySelector(`#tags-${tagType}-list`).nextElementSibling
     const inputElement = document.getElementById(`filter-${tagType}`)
     
-    if (hiddenTags.length === visibleTagList.length) {
+    if (hiddenTags.length === visibleTagList.length && hiddenTags.length !== 0) {
         inputElement.classList.add('focus:outline-red-500')
         noResult.classList.remove('hidden')
     }else{
